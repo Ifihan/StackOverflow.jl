@@ -21,55 +21,70 @@ I am also very aware that my approach to implementing this API in Julia is likel
 ![logo](assets/install.png)
 
 _Note_: Typing `]` into the Julia Repl will put you in the package manager. 
+```julia
+julia> ]
+
+(v1.3) pkg> add StackOverflow
+```
 
 ## Usage
+To run StackOverflow.jl, enter the following command in your Julia REPL:
 
 ```julia
-
 julia> using StackOverflow
+```
+For example, let's say we want to get the top 10 most recent questions tagged with `julia`:
 
+```julia
+# Using the getrecentquestionsfortag function to get the most recent questions for a tag.
 julia> qHolder = getrecentquestionsfortag()
 
+# Getting the detail of the first recent question tagged with julia
 julia> qHolder[1]
 Questions(Any["https://stackoverflow.com/questions/59010720/how-to-make-a-request-to-a-specific-url-in-julia"], Any[15], Any[1574532755], Any[true], Any[Dict{String,Any}("user_type" => "registered","display_name" => "logankilpatrick","reputation" => 2135,"user_id" => 7619808,"link" => "https://stackoverflow.com/users/7619808/logankilpatrick","profile_image" => "https://i.stack.imgur.com/gHvtS.png?s=128&g=1")], Any[1574534113], Any[0], Any[59010920], Any[59010720], Any[Any["julia"]], Any["How to make a request to a specific URL in Julia?"], Any[1])
 
+# Getting the link of the first question tagged with julia
 julia> qHolder[1].link
 1-element Array{Any,1}:
  "https://stackoverflow.com/questions/59010720/how-to-make-a-request-to-a-specific-url-in-julia"
 
+# Getting the view count of the question
 julia> qHolder[1].view_count
 1-element Array{Any,1}:
  15
 
+# Getting the owner of the question posted
 julia> qHolder[1].owner
 1-element Array{Any,1}:
  Dict{String,Any}("user_type" => "registered","display_name" => "logankilpatrick","reputation" => 2135,"user_id" => 7619808,"link" => "https://stackoverflow.com/users/7619808/logankilpatrick","profile_image" => "https://i.stack.imgur.com/gHvtS.png?s=128&g=1")
 
+# Getting the score of the question
 julia> qHolder[1].score
 1-element Array{Any,1}:
  0
 
+# Getting the title of the question
 julia> qHolder[1].title
 1-element Array{Any,1}:
  "How to make a request to a specific URL in Julia?"
 
+# Getting the answer count of the question
 julia> qHolder[1].answer_count
 1-element Array{Any,1}:
  1
 
+# Getting the detail of the second recent question tagged with julia
 julia> qHolder[2]
 Questions(Any["https://stackoverflow.com/questions/58956518/how-can-i-view-profiling-information-visually"], Any[145], Any[1574259575], Any[true], Any[Dict{String,Any}("user_type" => "registered","display_name" => "Marouane1994","reputation" => 173,"user_id" => 12078089,"link" => "https://stackoverflow.com/users/12078089/marouane1994","profile_image" => "https://www.gravatar.com/avatar/67241161f774e0fd40923e37c370fb26?s=128&d=identicon&r=PG&f=1")], Any[1574519259], Any[0], Any[], Any[58956518], Any[Any["julia"]], Any["How can I view profiling information visually?"], Any[1])
 ```
 
-Another example:
+Another use of this package is to check the privileges of a StackOverflow user. For example, let's say we want to check the privileges of the user `logankilpatrick` using the `checkmyprivileges()` function:
 
 ```julia
-
 julia> using StackOverflow
 
 julia> checkmyprivileges("logankilpatrick")
 Your current rep is 2165 and your privileges are as follows:
-
 
 description: Ask a question or contribute an answer
 short_description: create posts
@@ -128,3 +143,6 @@ short_description: create new tags
 description: Edits to any question or answer are applied immediately
 short_description: edit questions and answers
 ```
+
+## Contributing
+Contributions are highly welcomed. Please feel free to open an issue or a pull request. Kindly refer to the [contributing guidelines](CONTRIBUTING.md) for more information.
